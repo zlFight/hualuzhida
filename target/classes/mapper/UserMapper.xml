@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zhida.business.domain.repo.UserRepo">
+    <resultMap id="userInfo" type="zhida.business.domain.model.UserInfo">
+        <result column="id" jdbcType="INTEGER" property="id"></result>
+        <result column="name" jdbcType="VARCHAR" property="name"></result>
+        <result column="password" jdbcType="VARCHAR" property="password"></result>
+        <result column="is_admin" jdbcType="VARCHAR" property="isAdmin"></result>
+		<result column="telephone_num" jdbcType="VARCHAR" property="telephoneNum"></result>
+		<result column="telephone_num" jdbcType="VARCHAR" property="telephoneNum"></result>
+    </resultMap>
+
+
+
+    <select id="getUserInfo" resultMap="userInfo" parameterType="zhida.business.domain.model.UserInfo">
+        select * from user_info
+        where name = #{user.name} and password = #{user.password}
+    </select>
+
+    <insert id="insert" parameterType="zhida.business.domain.model.UserInfo" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO USER_INFO(
+			NAME,
+			PASSWORD,
+			TELEPHONE_NUM,
+			EMAIL,
+			ID_CARD)
+		VALUES(
+			#{user.name,jdbcType=VARCHAR},
+		    #{user.password,jdbcType=VARCHAR},
+		    #{user.telephoneNum,jdbcType=VARCHAR},
+		    #{user.email,jdbcType=VARCHAR},
+		    #{user.idCard,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<select id="selectByName" resultMap="userInfo" parameterType="zhida.business.domain.model.UserInfo">
+        select * from user_info
+        where name = #{user.name}
+    </select>
+</mapper>
+

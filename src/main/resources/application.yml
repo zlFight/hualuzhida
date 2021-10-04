@@ -1,0 +1,23 @@
+server:
+  port: 8090
+  servlet:
+    context-path:
+service:
+  apiPath: https://restapi.amap.com/v3/weather/weatherInfo?key=47e2243850d5821bf1bbd5ea100e0df5&city=210211&extensions=base
+
+spring:
+  profiles:
+    　active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hualuzhida?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: nlfd1993627
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+mybatis:
+  #  mapper文件
+  mapper-locations: mapper/*Mapper.xml
+  #  实体类
+  type-aliases-package: zhida.business.domain.model.*
