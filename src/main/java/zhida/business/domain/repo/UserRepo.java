@@ -13,4 +13,10 @@ public interface UserRepo {
     int insert(@Param("user") UserInfo userInfo);
 
     List<UserInfo> selectByName(@Param("user") UserInfo userInfo);
+
+    List<UserInfo> queryUserInfo(@Param("name") String name);
+
+    void deleteUser(@Param("id") Integer id);
+
+    void setAdmin(@Param("id") Integer id);
 }

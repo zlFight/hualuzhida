@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/userManage")
-public class UserManagerController {
+public class UserManagerController extends BaseController{
     @Autowired
     private UserManagerService userManagerService;
 
@@ -40,6 +40,32 @@ public class UserManagerController {
         UserInfo userInfo = new UserInfo();
         userInfo.setName(name);
         return userManagerService.checkNameExist(userInfo);
+    }
+
+    @GetMapping("/query")
+    public Map<String, Object> queryUserInfo() throws Exception {
+        if(!"Y".equals(request.getParameter("isAdmin"))){
+            return error("current user not have authority!");
+        }
+        return successList(userManagerService.queryUserInfo(request.getParameter("userName")));
+    }
+
+    @DeleteMapping("/delete")
+    public Map<String, Object> deleteUser(@RequestBody() Map map) throws Exception {
+        if(!"Y".equals(request.getParameter("isAdmin"))){
+            return error("current user not have authority!");
+        }
+        userManagerService.deleteUser((Integer) map.get("id"));
+        return success();
+    }
+
+    @PostMapping("/setAdmin")
+    public Map<String, Object> setAdmin(@RequestBody() Map map) throws Exception {
+        if(!"Y".equals(request.getParameter("isAdmin"))){
+            return error("current user not have authority!");
+        }
+        userManagerService.setAdmin((Integer) map.get("id"));
+        return success();
     }
 
 }

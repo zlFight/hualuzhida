@@ -1,6 +1,7 @@
 package zhida.business.domain.util;
 
 import com.github.pagehelper.PageInfo;
+import zhida.business.domain.model.UserInfo;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,13 @@ public class ResponseMsgUtil extends ConstantUtils {
         resultMap.put(SELECT_DATA_KEY, data);
         return resultMap;
     }
+
+    public static Map<String, Object> successList(List<UserInfo> data) {
+        Map<String, Object> resultMap = success();
+        resultMap.put(SELECT_DATA_KEY, data);
+        return resultMap;
+    }
+
 
     public static Map<String, Object> error(String msg) {
         Map<String, Object> resultMap = new HashMap<>(2);

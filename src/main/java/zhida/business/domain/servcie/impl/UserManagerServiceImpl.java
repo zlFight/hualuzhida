@@ -34,4 +34,20 @@ public class UserManagerServiceImpl implements UserManagerService {
         }
         return false;
     }
+
+    @Override
+    public List<UserInfo> queryUserInfo(String name) {
+        return userRepo.queryUserInfo(name);
+    }
+
+    @Override
+    public void deleteUser(Integer id) {
+
+        userRepo.deleteUser(id);
+    }
+
+    @Override
+    public void setAdmin(Integer id) {
+        userRepo.setAdmin(id);
+    }
 }
