@@ -15,12 +15,12 @@
 
 
     <select id="getUserInfo" resultMap="userInfo" parameterType="zhida.business.domain.model.UserInfo">
-        select * from user_info
+        select * from userinfo
         where name = #{user.name} and password = #{user.password}
     </select>
 
     <insert id="insert" parameterType="zhida.business.domain.model.UserInfo" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO USER_INFO(
+		INSERT INTO userinfo(
 			NAME,
 			PASSWORD,
 			TELEPHONE_NUM,
@@ -36,23 +36,23 @@
 	</insert>
 
 	<select id="selectByName" resultMap="userInfo" parameterType="zhida.business.domain.model.UserInfo">
-        select * from user_info
+        select * from userinfo
         where name = #{user.name}
     </select>
 
 	<select id="queryUserInfo" resultMap="userInfo" parameterType="zhida.business.domain.model.UserInfo">
-        select * from user_info
-        where is_admin != 'Y' or name = #{name}
+        select * from userinfo
+        where is_admin is null or is_admin != 'Y' or name = #{name}
     </select>
 
 	<delete id="deleteUser"  parameterType="java.lang.Integer">
-        DELETE from user_info
+        DELETE from userinfo
         where is_admin != 'Y' AND ID = #{id}
     </delete>
 
 
 	<update id="setAdmin" parameterType="java.lang.Integer">
-		UPDATE user_info SET is_admin = 'Y' WHERE ID = #{id}
+		UPDATE userinfo SET is_admin = 'Y' WHERE ID = #{id}
 	</update>
 </mapper>
 
